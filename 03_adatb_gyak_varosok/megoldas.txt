@@ -20,8 +20,24 @@ ON megye.id=varos.megyeid
 GROUP BY megye.mnev
 
 4.
-SELECT varos.vnev, varos.nepesseg, megye.mnev
+select varos.vnev,varos.nepesseg
+from varos
+where varos.nepesseg<
+(SELECT varos.nepesseg
 FROM varos
 INNER JOIN megye
 ON megye.id=varos.megyeid
-WHERE megye.mnev="Hajdú-Bihar"
+WHERE megye.mnev="Hajdú-Bihar"  
+ORDER BY `varos`.`nepesseg` ASC
+limit 1)
+5.
+START TRANSACTION;
+CREATE TABLE gyoriek AS
+SELECT varos.vnev, varos.nepesseg, varos.terulet
+FROM varos
+INNER JOIN megye
+ON megye.id=varos.megyeid
+WHERE megye.mnev="Győr-Moson-Sopron";
+UPDATE gyoriek SET gyoriek.nepesseg = gyoriek.nepesseg * 1.15;
+UPDATE gyoriek SET gyoriek.terulet = gyoriek.terulet * 1.15;
+COMMIT;
