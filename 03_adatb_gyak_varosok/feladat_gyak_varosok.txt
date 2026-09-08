@@ -1,0 +1,13 @@
+1.
+Kérdezd le a Heves megyében található városok nevét, népességét és megye nevét!  
+2.
+Írasd ki a Csongrád megye lakosainak összlétszámát!
+3.
+Írasd ki megyénként mennyi a legkisebb létszámú város! Megye neve és a legkisebb létszám jelenjen meg!
+4.
+Írasd ki a Hajdú megyei legkisebb népességű város 
+népességétől alacsonyabb népességű városok nevét, népességét szerte az országban!
+5.
+Hozz létre táblát gyoriek néven, mely a Győr-Moson-Sopron megyei városok nevét, 
+népességét, területés tárolja, 
+majd növeld az összes népességét 15%-al és területét is 15%-al! 

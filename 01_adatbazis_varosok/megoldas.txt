@@ -1,0 +1,130 @@
+1.
+select varos.vnev,varos.nepesseg,varos.terulet
+from varos
+where varos.vnev like "%ház%";
+
+4.
+select varos.vnev,varos.nepesseg,varos.terulet,megye.mnev
+from varos
+INNER join megye
+on varos.megyeid=megye.id
+where varos.vnev like "%ház%";
+
+5.
+select varos.vnev
+from varos 
+inner join varostipus
+on varos.vtipid=varostipus.id
+where varostipus.vtip like "%megyei jogú város%";
+
+9.
+SELECT avg(varos.nepesseg)
+from varos 
+inner join megye
+on varos.megyeid=megye.id
+where megye.mnev like "%Szabolcs%";
+
+10.
+SELECT max(varos.terulet)
+from varos 
+inner join megye
+on varos.megyeid=megye.id
+where megye.mnev like "%Somogy%";
+
+ez a jó:
+
+SELECT varos.vnev, varos.terulet
+from varos 
+inner join megye
+on varos.megyeid=megye.id
+where megye.mnev like "%Somogy%"  
+ORDER BY `varos`.`terulet` DESC
+limit 1;
+
+12.
+SELECT megye.mnev,count(megye.mnev)
+from varos 
+inner join megye
+on varos.megyeid=megye.id
+GROUP by megye.mnev;
+
+15. 
+SELECT varos.vnev, varos.nepesseg
+FROM varos
+WHERE varos.nepesseg>(SELECT AVG(varos.nepesseg)
+FROM varos)  
+ORDER BY `varos`.`nepesseg` ASC
+
+17.
+SELECT varos.vnev,varos.nepesseg,megye.mnev
+FROM varos
+INNER JOIN megye
+ON varos.megyeid=megye.id
+WHERE varos.megyeid IN
+(SELECT varos.megyeid
+FROM varos
+WHERE varos.vnev LIKE "%város%");
+
+18.
+SELECT varos.vnev,megye.mnev,varos.nepesseg
+FROM varos
+INNER JOIN megye
+on varos.megyeid = megye.id
+WHERE varos.megyeid NOT IN (SELECT varos.megyeid
+from varos
+WHERE varos.vnev LIKE "%falu%") AND (varos.nepesseg BETWEEN 10000 AND 20000)  
+ORDER BY `megye`.`mnev` ASC
+
+19.
+INSERT INTO varos  VALUES (NULL, 'Kukutyin', 5, 10, 'h', 'h', 1000, 10);
+
+20.
+UPDATE varos 
+SET varos.nepesseg =varos.nepesseg*1.1
+WHERE varos.vnev like "Kuk%"
+
+21.
+DELETE FROM varos
+WHERE varos.megyeid=
+( 
+select megye.id 
+from megye 
+where megye.mnev="Zala"
+)
+
+22.
+select megye.mnev,COUNT(varos.id)
+from megye 
+left join varos
+on varos.megyeid=megye.id
+GROUP by megye.mnev;
+
+23.
+CREATE TABLE hajduvarosok AS
+select *
+from varos 
+where varos.vnev like "%hajdú%";
+
+24.
+CREATE VIEW nagyvarosok AS
+SELECT varos.id,varos.vnev,varos.nepesseg,varos.terulet, megye.mnev, varostipus.vtip
+from varos
+inner join megye
+on varos.megyeid=megye.id
+INNER join varostipus
+on varos.vtipid=varostipus.id
+WHERE varos.nepesseg>50000;
+
+25.
+START TRANSACTION;
+CREATE TABLE seged AS
+select varos.vnev,varos.nepesseg
+from varos
+INNER JOIN megye
+on varos.megyeid=megye.id
+where megye.mnev like "%hajdú%";
+update seged set seged.nepesseg=seged.nepesseg*1.1 where seged.nepesseg>50000;
+update seged set seged.nepesseg=seged.nepesseg*0.9 where seged.nepesseg<=50000;
+COMMIT;
+
+

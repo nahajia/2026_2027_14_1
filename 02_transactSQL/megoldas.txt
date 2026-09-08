@@ -1,0 +1,21 @@
+start TRANSACTION;
+CREATE TEMPORARY table seged AS
+select orszag.id as sId, orszag.orszagNev as sOrszag,max(versenyzo.pont) as sMax
+from orszag
+inner join versenyzo
+on orszag.id=versenyzo.orszagId
+GROUP by orszag.orszagNev;
+set @kivalo=750;
+set @jo=700;
+set @kozepes=650;
+CREATE TABLE dijazas AS
+SELECT seged.sOrszag, seged.sMax,versenyzo.nev, 
+case 
+	WHEN seged.sMax>@kivalo then "2000$"
+	WHEN seged.sMax>@jo then "1000$"   
+	WHEN seged.sMax>@kozepes then "500$" 
+end as "jutalom"
+from seged
+inner join versenyzo
+on seged.sMax=versenyzo.pont and seged.sId=versenyzo.orszagId;
+COMMIT;
