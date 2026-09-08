@@ -1,0 +1,27 @@
+1.
+SELECT varos.vnev, varos.nepesseg, megye.mnev
+FROM varos
+INNER JOIN megye
+ON megye.id=varos.megyeid
+WHERE megye.mnev="Heves"
+
+2.
+SELECT sum(varos.nepesseg)
+FROM varos
+INNER JOIN megye
+ON megye.id=varos.megyeid
+WHERE megye.mnev="Csongrád";
+
+3.
+SELECT megye.mnev, MIN(varos.nepesseg)
+FROM varos
+INNER JOIN megye
+ON megye.id=varos.megyeid
+GROUP BY megye.mnev
+
+4.
+SELECT varos.vnev, varos.nepesseg, megye.mnev
+FROM varos
+INNER JOIN megye
+ON megye.id=varos.megyeid
+WHERE megye.mnev="Hajdú-Bihar"
