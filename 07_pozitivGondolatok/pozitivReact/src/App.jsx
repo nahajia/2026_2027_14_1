@@ -1,14 +1,30 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+
 import './App.css'
 import kep from './kepek/kep.jpg'
 import barossKep from './kepek/baross.webp'
 
+import Keruldel from './Keruldel'
+import Tanacsok from './Tanacsok'
+import Taplalkozas from './Taplalkozas'
+import Hala from './Hala'
+import Stresszoldas from './Stresszoldas'
+
 const diak={
   "nev":"Tojásos Tóbiás",
   "iskola":"Baross"
+}
+const Utazas=()=>{
+  return (
+    <div className='keretBal'>
+      <p>Ha időd és vagyonod engedi utazz sokat:</p>
+      <ul>
+        <li>Olaszország</li>
+        <li>Horvátország</li>
+        <li>Törökország</li>
+      </ul>
+    </div>
+  )
 }
 
 function Nevjegy(){
@@ -28,6 +44,12 @@ function App() {
           <h1>Pozitív gondolatok a boldog élethez</h1>
           <img id='vigyor' src={kep} alt="" />
 
+          <Stresszoldas />
+          <Hala />
+          <Taplalkozas />
+          <Tanacsok />
+          <Keruldel />
+          <Utazas />
           <Nevjegy />
         </div>
   )

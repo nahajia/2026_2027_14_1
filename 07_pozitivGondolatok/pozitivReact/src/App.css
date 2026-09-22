@@ -6,3 +6,13 @@
   margin:20px;
   padding:10px;
 }
+ul{
+  text-align: left;
+}
+.keretBal{
+  border:1px solid orange;
+  box-shadow: 5px 5px 5px;
+  margin: 20px;
+  text-align: left;
+  padding:20px;
+}
