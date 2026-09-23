@@ -9,6 +9,9 @@ import Tanacsok from './Tanacsok'
 import Taplalkozas from './Taplalkozas'
 import Hala from './Hala'
 import Stresszoldas from './Stresszoldas'
+import Olvass from './Olvass'
+import Sport from './Sport'
+import Tantargy from './Tantargy'
 
 const diak={
   "nev":"Tojásos Tóbiás",
@@ -44,6 +47,9 @@ function App() {
           <h1>Pozitív gondolatok a boldog élethez</h1>
           <img id='vigyor' src={kep} alt="" />
 
+          <Tantargy />
+          <Sport />
+          <Olvass />
           <Stresszoldas />
           <Hala />
           <Taplalkozas />

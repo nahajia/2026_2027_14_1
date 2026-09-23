@@ -1,0 +1,5 @@
+https://api.exchangerate-api.com/v4/latest/EUR
+
+https://raw.githubusercontent.com/WildCodeSchool/starwars-api/refs/heads/master/db.json
+
+https://api.mymemory.translated.net/get?q=translate%20this%20sentence&langpair=en|hu
