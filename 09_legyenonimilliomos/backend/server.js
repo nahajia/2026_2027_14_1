@@ -133,7 +133,23 @@ app.post('/temaFelvitel', async (req, res) => {
         });
     }
 });
+//POST-os végpont - INSERT
+app.post('/kerdesFelvitel', async (req, res) => {
+    const {kerdes_szoveg, kerdes_jo, kerdes_rossz1, kerdes_rossz2, kerdes_rossz3, kerdes_temaid}=req.body
+    try {
+        const [result] = await pool.query(`
+            insert into kerdes values (null,?,?,?,?,?,?)
+            `,[kerdes_szoveg, kerdes_jo, kerdes_rossz1, kerdes_rossz2, kerdes_rossz3, kerdes_temaid]);
 
+        res.status(200).json({message:"Sikeres felvitel"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 
 // Szerver indítása
 app.listen(port, () => {
