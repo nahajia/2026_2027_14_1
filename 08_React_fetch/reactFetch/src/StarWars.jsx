@@ -19,14 +19,15 @@ const StarWars=()=>{
     return (
         <div>
             <p>Star Wars adatok </p>
-            <ul>
+            <div>
                 {adatok.map((elem)=>(
-                    <li key={elem.id}>
-                                {elem.name} 
-                                <img style={{width:30}} src={elem.pic} alt="" />
-                                </li>
+                    <div key={elem.id} className="halvanyKeret">
+                                <p>{elem.name} </p>
+                                <p> <img style={{width:30}} src={elem.pic} alt="" /></p> 
+                               
+                                </div>
                 ))}
-            </ul>
+            </div>
 
         </div>
     )

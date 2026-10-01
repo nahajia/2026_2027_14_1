@@ -8,9 +8,18 @@
   width: 30%;
   box-sizing: border-box;
   border: 2px solid blue;
-  margin:auto;
+  margin:5px auto 5px auto;
   padding: 10px;
 }
 ul{
   text-align: left;
+}
+.halvanyKeret{
+  border:1px solid rgb(170, 170, 236);
+  margin: 5px;
+}
+@media (max-width:600px) {
+  .oszlop{
+    width: 90%;
+  }
 }

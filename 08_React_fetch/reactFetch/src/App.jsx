@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Arfolyam from './Arfolyam'
 import StarWars from './StarWars'
+import Fordito from './Fordito'
 
 import './App.css'
 
@@ -18,7 +19,7 @@ function App() {
                 <StarWars />
             </div>
             <div className='oszlop'>
-                jobb
+                <Fordito />
             </div>
         </div>
       </div>
