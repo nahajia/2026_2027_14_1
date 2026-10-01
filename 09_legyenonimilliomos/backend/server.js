@@ -116,6 +116,24 @@ app.post('/keresKerdes', async (req, res) => {
         });
     }
 });
+//POST-os végpont - INSERT
+app.post('/temaFelvitel', async (req, res) => {
+    const {tema_nev}=req.body
+    try {
+        const [result] = await pool.query(`
+            insert into tema values (null,?)
+            `,[tema_nev]);
+
+        res.status(200).json({message:"Sikeres felvitel"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
 
 // Szerver indítása
 app.listen(port, () => {
