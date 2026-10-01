@@ -4,7 +4,7 @@ import './App.css'
 import TemaFelsorolas from './tema/TemaFelsorolas'
 import JatekosLenyilo from './jatekos/JatekosLenyilo'
 import KerdesDiv from './kerdes/KerdesDiv'
-
+import KeresKerdes from './kerdes/KeresKerdes'
 
 function App() {
 
@@ -15,6 +15,7 @@ function App() {
       <TemaFelsorolas />
       <JatekosLenyilo />
       <KerdesDiv />
+      <KeresKerdes />
     </div>
   )
 }
