@@ -89,6 +89,34 @@ app.get('/kerdesTema', async (req, res) => {
     }
 });
 
+//POST végpont -SELECT
+app.post('/keresKerdes', async (req, res) => {
+    const {szo}=req.body
+    try {
+        const [result] = await pool.query(`
+            SELECT * 
+            FROM kerdes
+            inner join tema
+            on tema.tema_id=kerdes.kerdes_temaid
+            where kerdes.kerdes_szoveg like ?
+            `,[`%${szo}%`]);
+
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
 // Szerver indítása
 app.listen(port, () => {
     console.log(`Szerver fut: http://localhost:${port}`);
