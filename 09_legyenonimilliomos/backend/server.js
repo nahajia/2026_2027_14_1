@@ -43,6 +43,25 @@ app.get('/tema', async (req, res) => {
         });
     }
 });
+app.get('/kerdes', async (req, res) => {
+    try {
+        const [result] = await pool.query(`SELECT * FROM kerdes`);
+
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 
 app.get('/jatekos', async (req, res) => {
     try {
@@ -142,6 +161,32 @@ app.post('/kerdesFelvitel', async (req, res) => {
             `,[kerdes_szoveg, kerdes_jo, kerdes_rossz1, kerdes_rossz2, kerdes_rossz3, kerdes_temaid]);
 
         res.status(200).json({message:"Sikeres felvitel"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
+//PARAMÉTERES adatátküldés
+app.post('/kerdes/:id', async (req, res) => {
+    const {id}=req.params
+    try {
+        const [result] = await pool.query(`
+                SELECT * 
+                FROM kerdes
+                where kerdes.kerdes_id=?
+                `,[id]);
+
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
 
     } catch (err) {
         res.status(500).json({
