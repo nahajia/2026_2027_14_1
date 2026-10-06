@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 
-const KerdesLenyilo=()=>{
+const KerdesLenyilo=({kerdes_id})=>{
     const [adatok,setAdatok]=useState([])
 
     const letoltes=async ()=>{
@@ -8,6 +8,7 @@ const KerdesLenyilo=()=>{
         let data=await response.json()
         //alert(JSON.stringify(data))
         setAdatok(data)
+        kerdes_id(data[0].kerdes_id)
     }
 
     useEffect(()=>{
@@ -17,7 +18,7 @@ const KerdesLenyilo=()=>{
     return (
         <div >
            
-            <select>
+            <select onChange={(e)=>kerdes_id(e.target.value)}>
             {
                 adatok.map((elem)=>(
                     <option key={elem.kerdes_id} 
