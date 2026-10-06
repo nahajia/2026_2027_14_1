@@ -1,9 +1,10 @@
 import { useState,useEffect } from "react"
 const KerdesTalalat=({kerdes_id})=>{
-    const [egyKerdes,setEgyKerdes]=useState([])
+    const [egyKerdes,setEgyKerdes]=useState({})
 
     const letoltes=async ()=>{
-        const response=await fetch(`http://localhost:3000/kerdes/${kerdes_id}`,
+        try {
+             const response=await fetch(`http://localhost:3000/kerdes/${kerdes_id}`,
             {
                     method: "POST",
                     headers: {
@@ -12,7 +13,14 @@ const KerdesTalalat=({kerdes_id})=>{
             })
         const data=await response.json()
         //alert(JSON.stringify(data))
-        setEgyKerdes(data[0])
+        if (response.ok)
+            setEgyKerdes(data[0])
+        else 
+            console.log("hiba")
+        } catch (error) {
+            console.log("hiba")
+        }
+       
     }
 
     useEffect(()=>{
@@ -21,7 +29,13 @@ const KerdesTalalat=({kerdes_id})=>{
     return (
         <div>
             <p>A kérdés id-je: {kerdes_id}</p>
-            <p>{egyKerdes.kerdes_szoveg}</p>
+            <p>Kérdés szövege: <span style={{color:"blue"}}> {egyKerdes.kerdes_szoveg}</span></p>
+            <p>Jó válasz: <span style={{color:"blue"}}> {egyKerdes.kerdes_jo}</span></p>
+            <p>1. rossz válasz: <span style={{color:"blue"}}> {egyKerdes.kerdes_rossz1}</span></p>
+            <p>2. rossz válasz: <span style={{color:"blue"}}> {egyKerdes.kerdes_rossz2}</span></p>
+            <p>3. rossz válasz: <span style={{color:"blue"}}> {egyKerdes.kerdes_rossz3}</span></p>
+            <p>Kérdés témája: <span style={{color:"blue"}}> {egyKerdes.kerdes_temaid}</span></p>
+            
         </div>
     )
 }

@@ -3,7 +3,7 @@ import KerdesLenyilo from "./KerdesLenyilo"
 import KerdesTalalat from "./KerdesTalalat"
 
 const KerdesReszletek=()=>{
-    const [kerdes_id,setKerdesId]=useState(2)
+    const [kerdes_id,setKerdesId]=useState(0)
     return (
         <div className="keret">
             <p>Egy kérdés részletei</p>

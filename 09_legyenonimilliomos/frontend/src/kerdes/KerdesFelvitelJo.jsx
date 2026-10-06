@@ -68,7 +68,7 @@ const KerdesFelvitelJo=()=>{
             <input type="text" onChange={(e)=>setkRossz2(e.target.value)} />
             <p>Add meg a harmadik rossz választ:</p>
             <input type="text" onChange={(e)=>setkRossz3(e.target.value)} />
-            <p>Add meg a téma id-ját:</p>
+            <p>Válaszd ki a témát:</p>
             {/* <input type="text" onChange={(e)=>setkTemaid(e.target.value)} /> */}
             <TemaLenyilo vissza={setkTemaid} />
 
