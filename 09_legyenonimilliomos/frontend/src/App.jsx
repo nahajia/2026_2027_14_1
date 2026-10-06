@@ -6,6 +6,8 @@ import JatekosLenyilo from './jatekos/JatekosLenyilo'
 import KerdesDiv from './kerdes/KerdesDiv'
 import KeresKerdes from './kerdes/KeresKerdes'
 import TemaFelvitel from './tema/TemaFelvitel'
+import KerdesFelvitel from './kerdes/KerdesFelvitel'
+import KerdesFelvitelJo from './kerdes/KerdesFelvitelJo'
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
       <KerdesDiv />
       <KeresKerdes />
       <TemaFelvitel />
+      <KerdesFelvitel />
+      <KerdesFelvitelJo />
     </div>
   )
 }
