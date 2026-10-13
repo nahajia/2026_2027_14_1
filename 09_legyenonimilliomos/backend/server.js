@@ -195,6 +195,89 @@ app.post('/kerdes/:id', async (req, res) => {
         });
     }
 });
+//PUT PATCH végpontok
+app.put('/temaModosit/:id', async (req, res) => {
+    const {id}=req.params
+    const {tema_nev}=req.body
+    try {
+        const [result] = await pool.query(`
+            update tema set tema_nev=? 
+                where tema_id=?
+            `,[tema_nev,id]);
+
+        res.status(200).json({message:"Sikeres módosítás"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+//kérdés módítása
+app.put('/kerdesModosit/:id', async (req, res) => {
+    const {id}=req.params
+    const {kerdes_szoveg, kerdes_jo, kerdes_rossz1, kerdes_rossz2, kerdes_rossz3, kerdes_temaid}=req.body
+    try {
+        const [result] = await pool.query(`
+            update kerdes set 
+                kerdes_szoveg=?, 
+                kerdes_jo=?, 
+                kerdes_rossz1=?, 
+                kerdes_rossz2=?, 
+                kerdes_rossz3=?, 
+                kerdes_temaid=?
+                where kerdes_id=?
+            `,[kerdes_szoveg, kerdes_jo, kerdes_rossz1, kerdes_rossz2, kerdes_rossz3, kerdes_temaid,id]);
+
+        res.status(200).json({message:"Sikeres módosítás"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+//PATCH, jatékos admin joga
+app.patch('/jatekosAdmin/:id', async (req, res) => {
+    const {id}=req.params
+    const {jatekos_admin}=req.body
+    try {
+        const [result] = await pool.query(`
+            update jatekos set jatekos_admin=? 
+                where jatekos_id=?
+            `,[jatekos_admin,id]);
+
+        res.status(200).json({message:"Sikeres módosítás"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+//DELETE, kérdés törlése
+app.delete('/kerdesTorles/:id', async (req, res) => {
+    const {id}=req.params
+    try {
+        const [result] = await pool.query(`
+            delete from kerdes where kerdes_id=?
+            `,[id]);
+
+        res.status(200).json({message:"Sikeres törlés"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
+
+
 
 // Szerver indítása
 app.listen(port, () => {

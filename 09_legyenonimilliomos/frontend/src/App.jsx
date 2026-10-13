@@ -9,6 +9,7 @@ import TemaFelvitel from './tema/TemaFelvitel'
 import KerdesFelvitel from './kerdes/KerdesFelvitel'
 import KerdesFelvitelJo from './kerdes/KerdesFelvitelJo'
 import KerdesReszletek from './kerdes/KerdesReszletek'
+import KerdesTorol from './kerdes/KerdesTorol'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <KerdesFelvitel />
       <KerdesFelvitelJo />
       <KerdesReszletek />
+      <KerdesTorol />
     </div>
   )
 }
