@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-const KerdesTorloGomb=({kerdes_id})=>{
+const KerdesTorloGomb=({kerdes_id,sorszam})=>{
     const [siker,setSiker]=useState("")
 
     const torles=async ()=>{
@@ -13,8 +13,10 @@ const KerdesTorloGomb=({kerdes_id})=>{
             })
         const data=await response.json()
         //alert(JSON.stringify(data))
-        if (response.ok)
+        if (response.ok){
             setSiker("siker")
+            sorszam((ertek)=>(ertek+1))
+        }
         else 
             console.log("hiba")
         } catch (error) {

@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 
-const KerdesLenyilo=({kerdes_id})=>{
+const KerdesLenyilo=({kerdes_id,sorszam})=>{
     const [adatok,setAdatok]=useState([])
 
     const letoltes=async ()=>{
@@ -13,7 +13,7 @@ const KerdesLenyilo=({kerdes_id})=>{
 
     useEffect(()=>{
         letoltes()
-    },[])
+    },[sorszam])
 
     return (
         <div >

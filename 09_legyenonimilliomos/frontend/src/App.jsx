@@ -10,6 +10,7 @@ import KerdesFelvitel from './kerdes/KerdesFelvitel'
 import KerdesFelvitelJo from './kerdes/KerdesFelvitelJo'
 import KerdesReszletek from './kerdes/KerdesReszletek'
 import KerdesTorol from './kerdes/KerdesTorol'
+import KerdesModosit from './kerdes/KerdesModosit'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <KerdesFelvitelJo />
       <KerdesReszletek />
       <KerdesTorol />
+      <KerdesModosit />
     </div>
   )
 }
