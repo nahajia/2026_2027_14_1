@@ -114,7 +114,8 @@ const KerdesSzerkeszt=({kerdes_id})=>{
             <TemaLenyiloSzerkeszt szam={egyKerdes.kerdes_temaid}  vissza={setVisszaTema}/>
 
             <button onClick={modositFuggveny}>Módosítás</button>
-            <p> {uzenet}</p>
+            { hiba ? <p style={{color:"red"}}>{uzenet}</p> :  <p style={{color:"blue"}}> {uzenet}</p>}
+           
         </div>
     )
 }
