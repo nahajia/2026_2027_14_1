@@ -3,7 +3,7 @@ import Cim from "../Cim"
 import leKep from "../assets/down.jpg"
 import felKep from "../assets/up.jpg"
 
-const BejegyzesLista=()=>{
+const BejegyzesLista=({frissit})=>{
     const [adatok,setAdatok]=useState([])
     const [rendez,setRendez]=useState(0)
 
@@ -27,7 +27,7 @@ const BejegyzesLista=()=>{
 
     useEffect(()=>{
         letoltes()
-    },[rendez])
+    },[rendez,frissit])
 
     return (
         <div>

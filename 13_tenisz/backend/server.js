@@ -96,7 +96,23 @@ app.get('/bejegyzesCsokkeno', async (req, res) => {
         });
     }
 });
+//bejegyzes felvitele
+app.post('/bejegyzesFelvitel', async (req, res) => {
+    const {bejegyzes_szoveg,bejegyzes_datum,bejegyzes_ki,bejegyzes_jatekos_id}=req.body
+    try {
+        const [result] = await pool.query(`
+            insert into bejegyzes values (null,?,?,?,?)
+            `,[bejegyzes_szoveg,bejegyzes_datum,bejegyzes_ki,bejegyzes_jatekos_id]);
 
+        res.status(200).json({message:'Sikeres felvitel'});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 // Szerver indítása
 app.listen(port, () => {
     console.log(`Szerver fut: http://localhost:${port}`);

@@ -7,12 +7,13 @@ import BejegyzesLista from './bejegyzes/BejegyzesLista'
 import BejegyzesLetrehozas from './bejegyzes/BejegyzesLetrehozas'
 function App() {
  
+  const [frissit,setFrissit]=useState(false)
 
   return (
         <div>
           <h1>Tenisz hírek</h1>
-          <BejegyzesLetrehozas />
-          <BejegyzesLista />
+          <BejegyzesLetrehozas frissit={setFrissit} />
+          <BejegyzesLista frissit={frissit} />
         </div>
   )
 }

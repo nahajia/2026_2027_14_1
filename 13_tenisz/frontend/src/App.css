@@ -21,3 +21,21 @@ h1{
   padding: 10px;
   box-shadow: 3px 3px 3px;
 }
+.dobozFelvitel{
+  border:solid 2px rgb(83, 40, 212);
+  margin:10px;
+  padding: 10px;
+  box-shadow: 3px 3px 3px;
+}
+.beviteliDoboz{
+  width:500px;
+  height: 100px;
+}
+
+
+@media (max-width:600px){
+  .beviteliDoboz{
+      width:300px;
+      height: 100px;
+    }
+}
