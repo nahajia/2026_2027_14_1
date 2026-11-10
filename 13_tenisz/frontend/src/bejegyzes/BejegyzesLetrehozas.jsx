@@ -1,14 +1,24 @@
 import { useState } from "react"
 import LenyiloJatekos from "./LenyiloJatekos"
 import Cim from "../Cim"
+import Swal from 'sweetalert2'
 
 const BejegyzesLetrehozas=({frissit})=>{
     const [ujSzoveg,setUjSzoveg]=useState("")
-    const [ujDatum,setUjDatum]=useState("2020-11-10")
+    const [ujDatum, setUjDatum] = useState(new Date().toISOString().split("T")[0])
     const [ujKi,setUjKi]=useState("")
     const [ujJatekosId,setUjJatekosId]=useState(1)
 
     const felvitel=async ()=>{
+        if (ujSzoveg.trim() === "" || ujKi.trim() === "") {
+            Swal.fire({
+                title: "Hiányzó adat!",
+                text: "Kérlek, töltsd ki a bejegyzés szövegét és a becenevet!",
+                icon: "warning",
+                confirmButtonText: "Rendben"
+            })
+            return
+        }
         try{
             const adatok={
                 "bejegyzes_szoveg":ujSzoveg,
@@ -28,7 +38,17 @@ const BejegyzesLetrehozas=({frissit})=>{
             const data=await response.json()
             //alert(JSON.stringify(data))
             if (response.ok){
-                alert(data["message"])
+                Swal.fire({
+                    title: "Sikeres felvitel!",
+                    text: data["message"],
+                    icon: "success",
+                    confirmButtonText: "Rendben"
+                })
+                  // Mezők alaphelyzetbe állítása
+                setUjSzoveg("")
+                setUjDatum(new Date().toISOString().split("T")[0])
+                setUjKi("")
+                setUjJatekosId(1)
                 frissit((ertek)=>(!ertek))
               
             }
@@ -43,25 +63,28 @@ const BejegyzesLetrehozas=({frissit})=>{
     return (
         <div>
             <div className="dobozFelvitel">
-                <textarea
-                    type="text" 
-                    placeholder="Adja meg a bejegyzés szövegét"
-                    className="beviteliDoboz"
-                    onChange={(e)=>setUjSzoveg(e.target.value)} />
-                <br />
-                <input 
-                    type="date" 
-                    value={ujDatum}
-                    onChange={(e)=>setUjDatum(e.target.value)}
+                    <textarea
+                        placeholder="Adja meg a bejegyzés szövegét"
+                        className="beviteliDoboz"
+                        value={ujSzoveg}
+                        onChange={(e)=>setUjSzoveg(e.target.value)}
                     />
-                <br />
-                <input 
-                    type="text"
-                    placeholder="Adjon meg egy becenevet"
-                    onChange={(e)=>setUjKi(e.target.value)}
+                    <br />
+                    <input 
+                        type="date" 
+                        value={ujDatum}
+                        onChange={(e)=>setUjDatum(e.target.value)}
                     />
-                <LenyiloJatekos kivalasztott={setUjJatekosId} />
-                <button onClick={felvitel}>Felvitel</button>
+                    <br />
+                    <input 
+                        type="text"
+                        placeholder="Adjon meg egy becenevet"
+                        value={ujKi}
+                        onChange={(e)=>setUjKi(e.target.value)}
+                    />
+                    <br />
+                    <LenyiloJatekos kivalasztott={setUjJatekosId} />
+                    <button onClick={felvitel}>Felvitel</button>
             </div>
 
         </div>
