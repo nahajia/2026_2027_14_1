@@ -9,7 +9,7 @@ const Lenyilo=({kivalasztott})=>{
 
     const leToltes=async ()=>{
         try{
-            const response=await fetch(Cim.Cim+"/tipus")
+            const response=await fetch(Cim+"/tipus")
             const data=await response.json()
             //alert(JSON.stringify(data))
             //console.log(data)
