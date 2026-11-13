@@ -76,7 +76,33 @@ app.post('/platformSzur', async (req, res) => {
         });
     }
 });
+//kereses, bemenete : szó, jatek nevében és leirasaban keres
+app.post('/jatekKeresSzo', async (req, res) => {
+    const {szo}=req.body
+    try {
+        const [result] = await pool.query(`
+            SELECT * 
+            FROM platform
+            inner join jatek
+            on jatek_platform_id=platform_id
+            where jatek_nev like ? or jatek_leiras like ?
+            `,[`%${szo}%`,`%${szo}%`]);
 
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 
 // Szerver indítása
 app.listen(port, () => {
