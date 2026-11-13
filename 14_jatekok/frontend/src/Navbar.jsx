@@ -55,6 +55,13 @@ function Navbar() {
                             </ul>
                         </li>
 
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/felvitelJatek">
+                                Felvitel
+                            </Link>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>

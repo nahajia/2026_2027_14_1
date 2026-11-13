@@ -103,7 +103,33 @@ app.post('/jatekKeresSzo', async (req, res) => {
         });
     }
 });
+//keresés max árig keres
+app.post('/jatekKeresAr', async (req, res) => {
+    const {ar}=req.body
+    try {
+        const [result] = await pool.query(`
+            SELECT * 
+            FROM platform
+            inner join jatek
+            on jatek_platform_id=platform_id
+            where jatek_ar<=?
+            `,[ar]);
 
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 // Szerver indítása
 app.listen(port, () => {
     console.log(`Szerver fut: http://localhost:${port}`);
