@@ -147,7 +147,46 @@ app.post('/jatekFelvitel', async (req, res) => {
         });
     }
 });
+//játék törlése
+app.delete('/jatekTorles/:id', async (req, res) => {
+    const {id}=req.params
+    try {
+        const [result] = await pool.query(`
+            delete from jatek where jatek_id=?
+            `,[ id ]);
 
+        res.status(200).json({message:"Sikeres törlés!"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+//jatek
+app.get('/jatek', async (req, res) => {
+    try {
+        const [result] = await pool.query(`
+            SELECT * 
+            FROM jatek
+            `);
+
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 
 
 // Szerver indítása

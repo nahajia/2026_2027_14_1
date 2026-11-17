@@ -60,7 +60,11 @@ function Navbar() {
                                 Felvitel
                             </Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/torlesJatek">
+                                Törlés
+                            </Link>
+                        </li>
 
                     </ul>
                 </div>

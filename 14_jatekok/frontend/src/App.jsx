@@ -8,6 +8,7 @@ import Jatekok from './Jatekok/Jatekok'
 import KeresesNev from './Kereses/KeresesNev'
 import KeresesAr from './Kereses/KeresesAr'
 import FelvitelJatek from './Felvitel/FelvitelJatek'
+import TorlesJatek from './Torles/TorlesJatek'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/keresesNev" element={<KeresesNev />} />
                     <Route path="/keresesAr" element={<KeresesAr />} />
                     <Route path="/felvitelJatek" element={<FelvitelJatek />} />
+                    <Route path="/torlesJatek" element={<TorlesJatek />} />
                 </Routes>
             </div>
         </Router>

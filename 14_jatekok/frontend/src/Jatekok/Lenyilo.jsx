@@ -44,7 +44,10 @@ const Lenyilo=({kivalasztott})=>{
     
     else return (
         <div style={{marginBottom:20}}>
-            <select onChange={(e)=>  kivalasztott(e.target.value)      }>
+            <select
+                className="form-control" 
+                onChange={(e)=>  kivalasztott(e.target.value)      }
+                >
                 {adatok.map((elem,index)=>(
                     <option key={index} value={elem.platform_id}> {elem.platform_nev} </option>
                 ))}

@@ -10,8 +10,23 @@ const FelvitelJatek=()=>{
     const [jatek_ar,setJatekAr]=useState(0) 
     const [jatek_leiras,setJatekLeiras]=useState("") 
 
+    const [uzenet,setUzenet]=useState("") 
+
     const felvitel=async ()=>{
         try{
+            if (jatek_nev.trim()===""){
+                setUzenet("A játék nevét kötelező megadni")
+                return
+            }
+            if (isNaN(jatek_ar)){
+                setUzenet("A játék árához számot adjon meg")
+                return
+            }
+            if (parseFloat(jatek_ar)<0){
+                setUzenet("A játék ára pozitív szám lehet")
+                return
+            }
+
             const adatok={
                 "jatek_nev": jatek_nev,
                 "jatek_ev":jatek_ev, 
@@ -32,11 +47,16 @@ const FelvitelJatek=()=>{
             )
             const data=await response.json()
             if (response.ok){
-                alert("sikeres")
+                //alert("sikeres")
+                setUzenet(data["message"])
+            }
+            else{
+                setUzenet(data["error"])
             }
         }
         catch (error){
             console.log(error)
+            setUzenet("Hiba")
         }
 
     }
@@ -88,7 +108,8 @@ const FelvitelJatek=()=>{
                     />
             
             <Lenyilo kivalasztott={setKivalasztott}/>
-            <button onClick={felvitel}>Felvitel</button>
+            <button className="btn btn-primary mb-3" onClick={felvitel}>Felvitel</button>
+            <div>{uzenet}</div>
         </div>
     )
 }
