@@ -130,6 +130,26 @@ app.post('/jatekKeresAr', async (req, res) => {
         });
     }
 });
+//játék felvitele
+app.post('/jatekFelvitel', async (req, res) => {
+    const { jatek_nev, jatek_ev, jatek_ertekeles, jatek_ar, jatek_leiras, jatek_kep, jatek_platform_id}=req.body
+    try {
+        const [result] = await pool.query(`
+            insert into jatek values (null,?,?,?,?,?,?,? )
+            `,[ jatek_nev, jatek_ev, jatek_ertekeles, jatek_ar, jatek_leiras, jatek_kep, jatek_platform_id]);
+
+        res.status(200).json({message:"Sikeres felvitel!"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
+
+
 // Szerver indítása
 app.listen(port, () => {
     console.log(`Szerver fut: http://localhost:${port}`);
