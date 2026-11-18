@@ -1,13 +1,66 @@
 import { useState,useEffect } from "react"
 import Cim from "../Cim"
+import Swal from 'sweetalert2'
 
 const TorlesJatek=()=>{
     const [adatok,setAdatok]=useState([])
     const [tolt,setTolt]=useState(true)
     const [hiba,setHiba]=useState(false)
 
-    const torles=(jatek_id)=>{
-        alert(jatek_id)
+    const [uzenet,setUzenet]=useState("") 
+
+    const [frissit,setFrissit]=useState(false)
+
+    const torles=async (jatek_id)=>{
+        //alert(jatek_id)
+        const biztos=window.confirm("Biztosan törölni szeretnél?")
+        if (!biztos)
+            return
+        try{
+            const response=await fetch(Cim+"/jatekTorles/"+jatek_id,
+                {
+                method: "delete",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                
+            }
+            )
+            const data=await response.json()
+            if (response.ok){
+                //alert("sikeres")
+                setUzenet(data["message"])
+                //alert(data["message"])
+                setFrissit(!frissit)
+                Swal.fire({
+                    title: "Sikeres törlés",
+                    text: "",
+                    icon: "success",
+                    confirmButtonText: "Rendben"
+                })
+
+            }
+            else{
+                setUzenet(data["error"])
+                //alert(data["error"])
+                Swal.fire({
+                    title: "Hiba",
+                    text: "",
+                    icon: "danger",
+                    confirmButtonText: "Rendben"
+                })
+            }
+        }
+        catch (error){
+            setUzenet("Hiba")
+            //alert("Hiba")
+            Swal.fire({
+                    title: "Hiba",
+                    text: "",
+                    icon: "danger",
+                    confirmButtonText: "Rendben"
+                })
+        }
     }
 
     const leToltes=async ()=>{
@@ -35,7 +88,7 @@ const TorlesJatek=()=>{
 
     useEffect(()=>{
         leToltes()
-    },[])
+    },[frissit])
 
     if (tolt)
         return (
