@@ -65,6 +65,11 @@ function Navbar() {
                                 Törlés
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/modosit">
+                                Módosítás
+                            </Link>
+                        </li>
 
                     </ul>
                 </div>

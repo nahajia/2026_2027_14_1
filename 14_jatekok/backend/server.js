@@ -187,6 +187,31 @@ app.get('/jatek', async (req, res) => {
         });
     }
 });
+//egy játék id alapján
+app.post('/jatek/:id', async (req, res) => {
+    const {id}=req.params
+    try {
+        const [result] = await pool.query(`
+            SELECT * 
+            FROM jatek
+            where jatek_id=?
+            `,[id]);
+
+        if (result.length === 0) {
+            return res.status(400).json({
+                error: 'Nem található'
+            });
+        }
+
+        res.status(200).json(result);
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
 
 
 // Szerver indítása
