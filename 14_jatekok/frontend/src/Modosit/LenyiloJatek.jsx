@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import Cim from "../Cim"
 
-const LenyiloJatek=({kivalasztott})=>{
+const LenyiloJatek=({kivalasztott,talalat})=>{
     const [adatok,setAdatok]=useState([])
     const [tolt,setTolt]=useState(true)
     const [hiba,setHiba]=useState(false)
@@ -31,7 +31,7 @@ const LenyiloJatek=({kivalasztott})=>{
 
     useEffect(()=>{
         leToltes()
-    },[])
+    },[talalat])
 
     if (tolt)
         return (

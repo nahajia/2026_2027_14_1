@@ -10,12 +10,12 @@ const Modosit=()=>{
         <div>
             <h2>Módosítás</h2>
             <div>
-                <LenyiloJatek kivalasztott={setKivalasztott}/>
-                <button onClick={()=>setTalalat(true)}>Játék adatainak keresése</button>
+                <LenyiloJatek kivalasztott={setKivalasztott} talalat={talalat}/>
+                <button className="btn btn-primary" onClick={()=>setTalalat(true)}>Játék adatainak keresése</button>
             </div>
             <div>
 
-                {talalat && <ModositBefejez kivalasztott={kivalasztott} /> }
+                {talalat && <ModositBefejez kivalasztott={kivalasztott} talalat={setTalalat}/> }
 
                 {/* {talalat?
                 <ModositBefejez />:

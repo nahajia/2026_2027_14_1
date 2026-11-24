@@ -212,6 +212,36 @@ app.post('/jatek/:id', async (req, res) => {
         });
     }
 });
+//játék módositása
+app.put('/jatekModosit/:jatek_id', async (req, res) => {
+    const {jatek_id}=req.params
+    const { jatek_nev, jatek_ev, jatek_ertekeles, jatek_ar, jatek_leiras, jatek_kep, jatek_platform_id}=req.body
+    try {
+        const [result] = await pool.query(`
+            update jatek set 
+                jatek_nev=?, 
+                jatek_ev=?, 
+                jatek_ertekeles=?, 
+                jatek_ar=?, 
+                jatek_leiras=?, 
+                jatek_kep=?, 
+                jatek_platform_id=?
+            where jatek_id=?
+            `,[ jatek_nev, jatek_ev, jatek_ertekeles, jatek_ar, jatek_leiras, jatek_kep, jatek_platform_id, jatek_id ]);
+
+        res.status(200).json({message:"Sikeres módosítás!"});
+
+    } catch (err) {
+        res.status(500).json({
+            error: 'Adatbázis hiba',
+            err
+        });
+    }
+});
+
+
+
+
 
 
 // Szerver indítása

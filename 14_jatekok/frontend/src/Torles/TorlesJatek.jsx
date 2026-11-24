@@ -46,7 +46,7 @@ const TorlesJatek=()=>{
                 Swal.fire({
                     title: "Hiba",
                     text: "",
-                    icon: "danger",
+                    icon: "error",
                     confirmButtonText: "Rendben"
                 })
             }
