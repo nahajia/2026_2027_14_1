@@ -1,0 +1,19 @@
+A. csoport: 
+
+Backend, kép postmanben:
+- típusonként hány játék van, pl. mobil: 3 stb., alias név legyen
+- keresés árra, bemenet két ár, alsó, felső határ, 
+és a két ár közötti játékok adatait hozza ki, határ is benne legyen
+- új típus felvitele
+
+A. csoport: 
+
+Frontend: 
+Új lenyíló menüben 3 menüpont, a következő feladatokkal 
+(minden feladathoz backend végpont):
+- típusonként hány játék van, számozatlan felsorolásban jelenjen meg 
+tipus neve, játékok száma
+- beviteli mezőbe beírunk két árat, 
+gombnyomásra keresse meg, a két ár közötti játékokat, 
+egymás alatti szegélyezett divekbe tegye,  játék nevét, árát
+- típus nevét beírjuk, gombnyomásra vigye fel

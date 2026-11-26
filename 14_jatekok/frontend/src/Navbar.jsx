@@ -70,7 +70,11 @@ function Navbar() {
                                 Módosítás
                             </Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/modosit2">
+                                Módosítás2
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
